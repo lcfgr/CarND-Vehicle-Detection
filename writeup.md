@@ -36,7 +36,7 @@ The goals / steps of this project are the following:
 ### Writeup / README
 
 #### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. 
-You're reading it!
+You're reading it! Many parts the code is based on Udacity's lectures.
 
 ### Histogram of Oriented Gradients (HOG)
 
@@ -49,7 +49,7 @@ I started by reading in all the `vehicle` and `non-vehicle` images.
 I then explored different color spaces and different `skimage.hog()` parameters (`orientations`, `pixels_per_cell`, and `cells_per_block`).  I grabbed random images from each of the two classes and displayed them to get a feel for what the `skimage.hog()` output looks like.
 
 I found out that the best color space was `YCrCb`.
-Below there is an example of 2 random images. using the `YCrCb` color space and HOG parameters of `orientations=9`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`. These 2 different images are one of the class "vehicles" and one of the class "non-vehicles". We can easily see the difference:
+Below there is an example of 2 random images using the `YCrCb` color space and HOG parameters of `orientations=9`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`. These 2 different images are one of the class "vehicles" and one of the class "non-vehicles". We can easily see the difference:
 
 Vehicles class:   
 ![alt text][image1]
@@ -58,29 +58,28 @@ Non-vehicle class:
 ![alt text][image2]
 
 #### 2. Explain how you settled on your final choice of HOG parameters.
- I experimented with a variety of values for the HOG parameters. However, apart from the color space, I was not able to see a significant differnce in accurancy. The biggest difference was in the processing time, which dramatically increased as the values of the parameters increased, especially the pixels per cell.. Therefore I decided to leave these options, in default values.
+ I experimented with a variety of values for the HOG parameters. However, apart from tweaking the color space and using all the channels, I was not able to see a significant difference in accurancy when tuning the other parameters. The biggest difference was in the processing time, which dramatically increased as the values of the parameters increased, especially the pixels per cell.. Therefore I decided to leave the rest of the options in default values, since the processing time was acceptable and I could not see any other benefits.
 
 In the end, I use binary spacial binning of (32,32), 32 histogram bins, orientation of 9 with 8 HOG pixels per cell and 2 HOG cells per block. The total features length was 8460 features.
  
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
-I trained a linear SVM using 20% of my samples as a test set. The code is in the 8th code cell of the IPython notebook. The training process was very fast (less than 12 seconds) and very accurate (approximately 99% accurancy).
+I trained a linear SVM using 20% of my samples as a test set. The code is in the 8th code cell of the IPython notebook. The training process was very fast (less than 12 seconds) and very accurate (approximately 99% accurancy). The code is based on the Udacity's lectures.
 
 ### Sliding Window Search
 
 #### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
-I used the slide_window function provided in the class (code cell 5),  to draw the area of the image that will be scanned. It is visible below:   
+I used the slide_window function provided in the Udacity class (code cell 5),  to draw the area of the image that will be scanned. It is visible below:   
 ![alt text][image3]
 
 However in the end, I used the Hog Sub-sampling Window Search method, also provided in the class material.This is included within the function find_cars (code cell 3). With this method a big performance increase is achieved.   
 
-Since I used time related filtering of false positives with the use of multiple frames, I decided to decrease a little the scaling which produced more boxes, and increased the accuracy of detection.
-
+Since I used time related filtering of false positives with the use of multiple frames, I decided to decrease a little the scaling which produced more boxes, and increased the accuracy of detection. The overlapping was also based on the proposed parameters of the class and even if it produced a lot of scanning bounding boxes, it is important for increasing the accuracy.
 
 ####2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
-Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
+I splitted my data into training and test sets, using 20% of my data as a testing set. Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
 
 ![alt text][image4]   
 ![alt text][image5]    
