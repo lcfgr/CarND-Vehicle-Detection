@@ -15,8 +15,8 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 [image1]: ./output_images/car_hog.png
-[image2]: ./output_images/not_car_hog.jpg
-[image3]: ./output_images/sliding_windows.jpg
+[image2]: ./output_images/not_car_hog.png
+[image3]: ./output_images/sliding_windows.png
 [image4]: ./output_images/bboxes_heat1.png
 [image5]: ./output_images/bboxes_heat2.png
 [image6]: ./output_images/bboxes_heat3.png
@@ -35,7 +35,7 @@ The goals / steps of this project are the following:
 ---
 ### Writeup / README
 
-####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. 
+#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. 
 You're reading it!
 
 ### Histogram of Oriented Gradients (HOG)
