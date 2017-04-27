@@ -118,7 +118,7 @@ I would like to note that I also used a frame-based filters. This filter combine
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-The biggest problem that can be found in the video is when the 2 cars overlap in the image. When this happens, the algorithm things that it is only one car, and not 2 different cars. This could be solved if also kept other parameters of the objects, apart from the heatmap, such as the color (the 2 cars have not the same color). However, the problem would still remain, if the cars had the same color.
+The biggest problem that can be found in the video is when the 2 cars overlap in the image. When this happens, the algorithm things that it is only one car, and not 2 different cars. This could be solved if also kept other parameters of the objects, apart from the heatmap, such as the color (the 2 cars have not the same color). However, the problem would still remain, if the cars had the same color. Other features of the car, such as its size and maybe the moving lane could then be also used as extra features. Deep learning could solve this problem by learning to track the individual cars' movement.
 
 Although the "minimizing" of processing in 4/5 of the frames increases dramatically the performance of the algorithm, it is still only 12.27it/s in a desktop machine. The processing time would be even bigger, if deep learning is added in the algorithm to undestand better the movement of the cars (so that It can better distinguish multiple cars overlapping) and to change the parameters in realtime, when needed.
 
