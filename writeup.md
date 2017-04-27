@@ -70,16 +70,16 @@ I trained a linear SVM using 20% of my samples as a test set. The code is in the
 
 #### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
-I used the slide_window function provided in the Udacity class (code cell 5),  to draw the area of the image that will be scanned. It is visible below:   
+I used the slide_window function provided in the Udacity class (code cell 5),  to draw the area of the image that will be scanned. I chose to discard the upper top of the picture, since the flying vehicles are not yet in production and therefore probably not present. The area where I scan is visible below:   
 ![alt text][image3]
 
 However in the end, I used the Hog Sub-sampling Window Search method, also provided in the class material.This is included within the function find_cars (code cell 3). With this method a big performance increase is achieved.   
 
 Since I used time related filtering of false positives with the use of multiple frames, I decided to decrease a little the scaling which produced more boxes, and increased the accuracy of detection. The overlapping was also based on the proposed parameters of the class and even if it produced a lot of scanning bounding boxes, it is important for increasing the accuracy.
 
-####2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
+#### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
-I splitted my data into training and test sets, using 20% of my data as a testing set. Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
+In my find_cars function, using hog sub-sampling I extracted the features of the objects. I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result. I also saved the lists of bounding boxes, to transfer information between the frames and avoid false positive items (see details below).  Here are some example images:
 
 ![alt text][image4]   
 ![alt text][image5]    
